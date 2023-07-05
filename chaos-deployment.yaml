@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaos-poc
+  labels:
+    app: chaos-poc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chaos-poc
+  template:
+    metadata:
+      labels:
+        app: chaos-poc
+    spec:
+      containers:
+        - name: chaos-poc
+          image: abc:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chaos-poc-service
+  labels:
+    app: chaos-poc
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: chaos-poc
