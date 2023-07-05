@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: chaos-poc
-          image: abc:latest
+          image: 824778207220.dkr.ecr.ap-south-1.amazonaws.com/chaos_poc:7
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
